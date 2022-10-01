@@ -10,6 +10,6 @@ type VersionLatestRequest struct {
 	ModLoader coremdl2.ModLoader `json:"modLoader"`
 }
 
-type VersionResponse struct {
+type VersionLatestResponse struct {
 	LatestVersion coremdl2.Version `json:"versions"`
 }
