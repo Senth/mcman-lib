@@ -11,5 +11,5 @@ type VersionLatestRequest struct {
 }
 
 type VersionLatestResponse struct {
-	LatestVersion coremdl2.Version `json:"versions"`
+	LatestVersion *coremdl2.Version `json:"versions"`
 }
