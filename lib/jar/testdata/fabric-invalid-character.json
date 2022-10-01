@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "id": "capes",
+  "version": "1.1.2",
+  "name": "Capes",
+  "description": "Check needs his Cape",
+  "authors": [
+    "Cael"
+  ],
+  "contact": {
+    "discord": "ã€Œ Lily ã€?#5284",
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/capes",
+    "sources": "https://github.com/CaelTheColher/Capes",
+    "issues": "https://github.com/CaelTheColher/Capes/issues"
+  },
+  "license": "GNU Lesser General Public License v2.1",
+  "icon": "assets/capes/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      {
+        "adapter": "kotlin",
+        "value": "me.cael.capes.Capes"
+      }
+    ],
+    "modmenu": [
+      "me.cael.capes.compatibility.ModMenuCompatibility"
+    ]
+  },
+  "mixins": [
+    "capes.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": "\u003e\u003d0.11.3",
+    "fabric": "*",
+    "fabric-language-kotlin": "*",
+    "minecraft": "1.17.x",
+    "autoconfig1u": "*",
+    "java": "\u003e\u003d16"
+  },
+  "jars": [
+    {
+      "file": "META-INF/jars/autoconfig1u-3.2.2.jar"
+    }
+  ]
+}

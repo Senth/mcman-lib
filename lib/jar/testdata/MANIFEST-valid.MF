@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Implementation-Title: s
+Implementation-Version: 4.1.1220
+Specification-Vendor: TeamTwilight
+Specification-Title: Twilight Forest
+Implementation-Timestamp: 2022-07-27T00:47:13+0000
+Specification-Version: 4.1.1220
+Implementation-Vendor: TeamTwilight
+

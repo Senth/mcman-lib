@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "id": "itemmodelfix",
+  "version": "1.0.2+1.17",
+
+  "name": "Item
+Model
+Fix",
+  "description": "Fixes gaps in generated item models.
+To access the configuration, follow the instructions on the mod website.",
+  "authors": [
+    "Pepper_Bell"
+  ],
+  "contact": {
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/item-model-fix",
+    "issues": "https://github.com/PepperCode1/Item-Model-Fix/issues",
+    "sources": "https://github.com/PepperCode1/Item-Model-Fix"
+  },
+
+  "license": "LGPL-3.0-only",
+  "icon": "assets/itemmodelfix/icon.png",
+
+  "environment": "client",
+  "entrypoints": {
+    "modmenu": [
+      "me.pepperbell.itemmodelfix.config.ModMenuApiImpl"
+    ]
+  },
+  "mixins": [
+    "itemmodelfix.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.7.0",
+    "minecraft": ">=1.17"
+  },
+  "recommends": {
+    "modmenu": "*",
+    "cloth-config2": "*"
+  },
+
+  "custom": {
+    "modmenu": {
+      "links": {
+        "modmenu.discord": "https://discord.gg/7rnTYXu"
+      }
+    }
+  }
+}
