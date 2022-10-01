@@ -3,12 +3,12 @@ package jar
 import (
 	"bytes"
 	"fmt"
+	coremdl2 "github.com/Senth/mcman-lib/coremdl"
+	"github.com/Senth/mcman-lib/utils/ptr"
 	"regexp"
 	"strings"
 
 	"github.com/BurntSushi/toml"
-	"github.com/Senth/mcman-lib/lib/coremdl"
-	"github.com/Senth/mcman-lib/lib/utils/ptr"
 )
 
 type forgeParser struct{}
@@ -17,7 +17,7 @@ func newForgeParser() parser {
 	return &forgeParser{}
 }
 
-func (f forgeParser) Parse(data []byte) (*coremdl.JarInfo, error) {
+func (f forgeParser) Parse(data []byte) (*coremdl2.JarInfo, error) {
 	data = f.cleanData(data)
 
 	t := forgeTOML{}
@@ -59,10 +59,10 @@ type forgeTOML struct {
 	} `toml:"mods"`
 }
 
-func (f forgeTOML) Model() coremdl.JarInfo {
-	return coremdl.JarInfo{
+func (f forgeTOML) Model() coremdl2.JarInfo {
+	return coremdl2.JarInfo{
 		NameID:        f.Mods[0].ModID,
-		ModLoaders:    coremdl.ModLoaderForge,
+		ModLoaders:    coremdl2.ModLoaderForge,
 		Name:          f.Mods[0].DisplayName,
 		Description:   strings.Trim(f.Mods[0].Description, " \t\n"),
 		VersionNumber: f.Mods[0].Version,

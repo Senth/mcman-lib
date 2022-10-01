@@ -5,17 +5,16 @@ import (
 	"bytes"
 	"context"
 	"fmt"
+	coremdl2 "github.com/Senth/mcman-lib/coremdl"
 	"io"
-
-	"github.com/Senth/mcman-lib/lib/coremdl"
 )
 
 type Jar interface {
-	GetMod(ctx context.Context, data []byte) (*coremdl.JarInfo, error)
+	GetMod(ctx context.Context, data []byte) (*coremdl2.JarInfo, error)
 }
 
 type parser interface {
-	Parse(data []byte) (*coremdl.JarInfo, error)
+	Parse(data []byte) (*coremdl2.JarInfo, error)
 }
 
 type jarImpl struct {
@@ -32,7 +31,7 @@ func NewJar() Jar {
 	}
 }
 
-func (j jarImpl) GetMod(ctx context.Context, data []byte) (*coremdl.JarInfo, error) {
+func (j jarImpl) GetMod(ctx context.Context, data []byte) (*coremdl2.JarInfo, error) {
 	// Read zip/jar
 	zipReader, err := zip.NewReader(bytes.NewReader(data), int64(len(data)))
 	if err != nil {
@@ -79,29 +78,29 @@ func (j jarImpl) GetMod(ctx context.Context, data []byte) (*coremdl.JarInfo, err
 	return info, err
 }
 
-func (j jarImpl) parseJar(ctx context.Context, modLoader coremdl.ModLoader, data []byte) (*coremdl.JarInfo, error) {
+func (j jarImpl) parseJar(ctx context.Context, modLoader coremdl2.ModLoader, data []byte) (*coremdl2.JarInfo, error) {
 	// Parse json with mod information
 	switch modLoader {
-	case coremdl.ModLoaderForge:
+	case coremdl2.ModLoaderForge:
 		return j.forge.Parse(data)
-	case coremdl.ModLoaderFabric:
+	case coremdl2.ModLoaderFabric:
 		return j.fabric.Parse(data)
 	default:
 		return nil, fmt.Errorf("unknown mod loader %s", modLoader)
 	}
 }
 
-func (j jarImpl) getZippedFile(r *zip.Reader) (*zip.File, coremdl.ModLoader, error) {
+func (j jarImpl) getZippedFile(r *zip.Reader) (*zip.File, coremdl2.ModLoader, error) {
 	for _, f := range r.File {
 		switch f.Name {
 		case "fabric.mod.json":
-			return f, coremdl.ModLoaderFabric, nil
+			return f, coremdl2.ModLoaderFabric, nil
 		case "META-INF/mods.toml":
-			return f, coremdl.ModLoaderForge, nil
+			return f, coremdl2.ModLoaderForge, nil
 		}
 	}
 
-	return nil, coremdl.ModLoaderNone, fmt.Errorf("could not find mod file in jar")
+	return nil, coremdl2.ModLoaderNone, fmt.Errorf("could not find mod file in jar")
 }
 
 func (j jarImpl) getJARVersion(r *zip.Reader) (string, error) {

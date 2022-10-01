@@ -6,9 +6,9 @@ package jar
 
 import (
 	context "context"
+	"github.com/Senth/mcman-lib/coremdl"
 	reflect "reflect"
 
-	coremdl "github.com/Senth/mcman-lib/lib/coremdl"
 	gomock "github.com/golang/mock/gomock"
 )
 

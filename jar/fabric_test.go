@@ -1,10 +1,10 @@
 package jar
 
 import (
+	coremdl2 "github.com/Senth/mcman-lib/coremdl"
+	"github.com/Senth/mcman-lib/utils/test"
 	"testing"
 
-	"github.com/Senth/mcman-lib/lib/coremdl"
-	"github.com/Senth/mcman-lib/lib/utils/test"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -12,7 +12,7 @@ func TestFabricParser_Parse(t *testing.T) {
 	type testData struct {
 		t           *testing.T
 		input       []byte
-		expected    *coremdl.JarInfo
+		expected    *coremdl2.JarInfo
 		expectedErr error
 	}
 
@@ -24,9 +24,9 @@ func TestFabricParser_Parse(t *testing.T) {
 			name: "Valid fabric mod",
 			prepareFn: func(d *testData) {
 				d.input = test.LoadFixture(t, "fabric-valid.json")
-				d.expected = &coremdl.JarInfo{
+				d.expected = &coremdl2.JarInfo{
 					NameID:        "carpet",
-					ModLoaders:    coremdl.ModLoaderFabric,
+					ModLoaders:    coremdl2.ModLoaderFabric,
 					Name:          "Carpet Mod in Fabric",
 					Description:   "Carpet made out of fabric",
 					VersionNumber: "1.4.16",
@@ -37,9 +37,9 @@ func TestFabricParser_Parse(t *testing.T) {
 			name: "Success when containing invalid character",
 			prepareFn: func(d *testData) {
 				d.input = test.LoadFixture(t, "fabric-invalid-character.json")
-				d.expected = &coremdl.JarInfo{
+				d.expected = &coremdl2.JarInfo{
 					NameID:        "capes",
-					ModLoaders:    coremdl.ModLoaderFabric,
+					ModLoaders:    coremdl2.ModLoaderFabric,
 					Name:          "Capes",
 					Description:   "Check needs his Cape",
 					VersionNumber: "1.1.2",
@@ -50,9 +50,9 @@ func TestFabricParser_Parse(t *testing.T) {
 			name: "Success when containing invalid control character",
 			prepareFn: func(d *testData) {
 				d.input = test.LoadFixture(t, "fabric-invalid-control-character.json")
-				d.expected = &coremdl.JarInfo{
+				d.expected = &coremdl2.JarInfo{
 					NameID:        "itemmodelfix",
-					ModLoaders:    coremdl.ModLoaderFabric,
+					ModLoaders:    coremdl2.ModLoaderFabric,
 					Name:          "Item\nModel\nFix",
 					Description:   "Fixes gaps in generated item models.\nTo access the configuration, follow the instructions on the mod website.",
 					VersionNumber: "1.0.2+1.17",

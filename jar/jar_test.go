@@ -3,10 +3,10 @@ package jar
 import (
 	"context"
 	"fmt"
+	coremdl2 "github.com/Senth/mcman-lib/coremdl"
+	"github.com/Senth/mcman-lib/utils/test"
 	"testing"
 
-	"github.com/Senth/mcman-lib/lib/coremdl"
-	"github.com/Senth/mcman-lib/lib/utils/test"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -16,7 +16,7 @@ func TestJarImpl_GetMod(t *testing.T) {
 	type testData struct {
 		t           *testing.T
 		input       []byte
-		expected    *coremdl.JarInfo
+		expected    *coremdl2.JarInfo
 		expectedErr error
 	}
 
@@ -28,9 +28,9 @@ func TestJarImpl_GetMod(t *testing.T) {
 			name: "Valid fabric mod",
 			prepareFn: func(d *testData) {
 				d.input = test.LoadFixture(t, "fabric-valid.jar")
-				d.expected = &coremdl.JarInfo{
+				d.expected = &coremdl2.JarInfo{
 					NameID:        "carpet",
-					ModLoaders:    coremdl.ModLoaderFabric,
+					ModLoaders:    coremdl2.ModLoaderFabric,
 					Name:          "Carpet Mod in Fabric",
 					Description:   "Carpet made out of fabric",
 					VersionNumber: "1.4.16",
@@ -41,9 +41,9 @@ func TestJarImpl_GetMod(t *testing.T) {
 			name: "Valid forge mod",
 			prepareFn: func(d *testData) {
 				d.input = test.LoadFixture(t, "forge-valid.jar")
-				d.expected = &coremdl.JarInfo{
+				d.expected = &coremdl2.JarInfo{
 					NameID:        "jei",
-					ModLoaders:    coremdl.ModLoaderForge,
+					ModLoaders:    coremdl2.ModLoaderForge,
 					Name:          "Just Enough Items",
 					Description:   "JEI is an item and recipe viewing mod for Minecraft, built from the ground up for stability and performance.",
 					VersionNumber: "7.6.4.86",
@@ -54,9 +54,9 @@ func TestJarImpl_GetMod(t *testing.T) {
 			name: "${file.jarVersion} to version number",
 			prepareFn: func(d *testData) {
 				d.input = test.LoadFixture(t, "file-version-valid.jar")
-				d.expected = &coremdl.JarInfo{
+				d.expected = &coremdl2.JarInfo{
 					NameID:        "twilightforest",
-					ModLoaders:    coremdl.ModLoaderForge,
+					ModLoaders:    coremdl2.ModLoaderForge,
 					Name:          "The Twilight Forest",
 					Description:   "An enchanted forest dimension.",
 					VersionNumber: "4.1.1220",
@@ -67,9 +67,9 @@ func TestJarImpl_GetMod(t *testing.T) {
 			name: "${file.jarVersion} success when missing specification version",
 			prepareFn: func(d *testData) {
 				d.input = test.LoadFixture(t, "file-version-missing-specification.jar")
-				d.expected = &coremdl.JarInfo{
+				d.expected = &coremdl2.JarInfo{
 					NameID:        "twilightforest",
-					ModLoaders:    coremdl.ModLoaderForge,
+					ModLoaders:    coremdl2.ModLoaderForge,
 					Name:          "The Twilight Forest",
 					Description:   "An enchanted forest dimension.",
 					VersionNumber: "4.1.1220",
@@ -80,9 +80,9 @@ func TestJarImpl_GetMod(t *testing.T) {
 			name: "${file.jarVersion} success when missing implementation version",
 			prepareFn: func(d *testData) {
 				d.input = test.LoadFixture(t, "file-version-missing-implementation.jar")
-				d.expected = &coremdl.JarInfo{
+				d.expected = &coremdl2.JarInfo{
 					NameID:        "twilightforest",
-					ModLoaders:    coremdl.ModLoaderForge,
+					ModLoaders:    coremdl2.ModLoaderForge,
 					Name:          "The Twilight Forest",
 					Description:   "An enchanted forest dimension.",
 					VersionNumber: "4.1.1220",

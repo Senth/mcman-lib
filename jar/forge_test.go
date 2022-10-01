@@ -2,10 +2,10 @@ package jar
 
 import (
 	"fmt"
+	coremdl2 "github.com/Senth/mcman-lib/coremdl"
+	"github.com/Senth/mcman-lib/utils/test"
 	"testing"
 
-	"github.com/Senth/mcman-lib/lib/coremdl"
-	"github.com/Senth/mcman-lib/lib/utils/test"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -13,7 +13,7 @@ func TestForgeParser_Parse(t *testing.T) {
 	type testData struct {
 		t           *testing.T
 		input       []byte
-		expected    *coremdl.JarInfo
+		expected    *coremdl2.JarInfo
 		expectedErr error
 	}
 
@@ -25,9 +25,9 @@ func TestForgeParser_Parse(t *testing.T) {
 			name: "Valid forge mod",
 			prepareFn: func(d *testData) {
 				d.input = test.LoadFixture(t, "forge-valid.toml")
-				d.expected = &coremdl.JarInfo{
+				d.expected = &coremdl2.JarInfo{
 					NameID:        "jei",
-					ModLoaders:    coremdl.ModLoaderForge,
+					ModLoaders:    coremdl2.ModLoaderForge,
 					Name:          "Just Enough Items",
 					Description:   "JEI is an item and recipe viewing mod for Minecraft, built from the ground up for stability and performance.",
 					VersionNumber: "7.6.4.86",
@@ -38,9 +38,9 @@ func TestForgeParser_Parse(t *testing.T) {
 			name: "Success when containing inline comment",
 			prepareFn: func(d *testData) {
 				d.input = test.LoadFixture(t, "forge-invalid-multiline-string.toml")
-				d.expected = &coremdl.JarInfo{
+				d.expected = &coremdl2.JarInfo{
 					NameID:        "twilightforest",
-					ModLoaders:    coremdl.ModLoaderForge,
+					ModLoaders:    coremdl2.ModLoaderForge,
 					Name:          "The Twilight Forest",
 					Description:   "An enchanted forest dimension.",
 					VersionNumber: "${file.jarVersion}",

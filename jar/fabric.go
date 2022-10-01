@@ -3,10 +3,9 @@ package jar
 import (
 	"bytes"
 	"encoding/json"
+	coremdl2 "github.com/Senth/mcman-lib/coremdl"
+	"github.com/Senth/mcman-lib/utils/ptr"
 	"regexp"
-
-	"github.com/Senth/mcman-lib/lib/coremdl"
-	"github.com/Senth/mcman-lib/lib/utils/ptr"
 )
 
 type fabricParser struct{}
@@ -15,7 +14,7 @@ func newFabricParser() parser {
 	return &fabricParser{}
 }
 
-func (f fabricParser) Parse(data []byte) (*coremdl.JarInfo, error) {
+func (f fabricParser) Parse(data []byte) (*coremdl2.JarInfo, error) {
 	data = f.cleanData(data)
 
 	j := fabricJSON{}
@@ -52,10 +51,10 @@ type fabricJSON struct {
 	Description string `json:"description"`
 }
 
-func (f fabricJSON) Model() coremdl.JarInfo {
-	return coremdl.JarInfo{
+func (f fabricJSON) Model() coremdl2.JarInfo {
+	return coremdl2.JarInfo{
 		NameID:        f.ID,
-		ModLoaders:    coremdl.ModLoaderFabric,
+		ModLoaders:    coremdl2.ModLoaderFabric,
 		Name:          f.Name,
 		Description:   f.Description,
 		VersionNumber: f.Version,

@@ -1,10 +1,10 @@
 package jar
 
 import (
+	"github.com/Senth/mcman-lib/utils/test"
 	"io"
 	"testing"
 
-	"github.com/Senth/mcman-lib/lib/utils/test"
 	"github.com/stretchr/testify/assert"
 )
 
