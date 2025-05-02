@@ -5,7 +5,7 @@ go 1.19
 require (
 	github.com/BurntSushi/toml v1.5.0
 	github.com/golang/mock v1.6.0
-	github.com/stretchr/testify v1.8.2
+	github.com/stretchr/testify v1.10.0
 )
 
 require (
